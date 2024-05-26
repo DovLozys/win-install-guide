@@ -1,1 +1,3 @@
 # win-install-guide
+
+some notes on how I do it these days...
