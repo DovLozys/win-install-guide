@@ -9,4 +9,36 @@ some notes on how I do it these days...
   - verify .iso with `Get-FileHash` in PowerShell
 
 - rufus win experience settings:
+  
   <img width="392" alt="rufus" src="https://github.com/DovLozys/win-install-guide/assets/755086/7b13c307-7127-4329-b55b-aae4448c97f9">
+
+# Dev env
+
+## VSCode
+
+- `@tag:telemetry` set to off
+- `Enables commit signing with GPG`
+
+## wsl/git
+
+- `wsl --install`
+- .gitconfig:
+- ```
+  git config --global user.email "dov@example.com"
+  git config --global user.name "Dov"
+  git config --global user.signingkey 00EF4D3F22885E4B
+  git config --global commit.gpgsign true
+  git config --global tag.gpgsign true
+  ```
+  
+- install https://www.gpg4win.org
+- in wsl edit `~/.gnupg/gpg-agent.conf` with:
+  - ```
+    default-cache-ttl 34560000
+    max-cache-ttl 34560000
+    pinentry-program "/mnt/c/Program Files (x86)/GnuPG/bin/pinentry-basic.exe"
+    ```
+- generate gpg key pair:
+  - `gpg --full-generate-key`
+- export for github with:
+  - gpg --armor --export 00EF4D3F22885E4B
