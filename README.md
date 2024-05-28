@@ -38,6 +38,11 @@ some notes on how I do it these days...
     max-cache-ttl 34560000
     pinentry-program "/mnt/c/Program Files (x86)/GnuPG/bin/pinentry-basic.exe"
     ```
+- generate ssh key:
+  - `ssh-keygen -t ed25519 -C "dov@example.com"`
+- export public key to github with:
+  - `cat ~/.ssh/id_ed25519.pub`
+
 - generate gpg key pair:
   - `gpg --full-generate-key`
 - export for github with:
