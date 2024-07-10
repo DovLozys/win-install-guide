@@ -5,16 +5,35 @@ some notes on how I do it these days...
 ## Bootable USB
 
 - Download windows .iso from <https://www.microsoft.com/software-download/windows11>
+
   - Product Language: en-us
   - verify .iso with `Get-FileHash` in PowerShell
 
 - rufus win experience settings:
-![Rufus settings](https://github.com/DovLozys/win-install-guide/assets/755086/7b13c307-7127-4329-b55b-aae4448c97f9)
+  ![Rufus settings](https://github.com/DovLozys/win-install-guide/assets/755086/7b13c307-7127-4329-b55b-aae4448c97f9)
 
-## win installation
+## win install
 
-Run `irm "https://christitus.com/win" | iex`, then `Tweaks -> Standard -> Run Tweaks`, then `Run oosu10`
+After booting into the USB, change Time and currency format to `English (World)` (disables app store, doesn't install other useless apps).
 
+Accept license terms, select Custom: Install Windows only, delete all partitions and install to Unallocated Space.
+
+Once we get to OOBEREGION error, skip that, chose I don't have internet -> Continue with limited setup and installation is done.
+
+## win setup
+
+Settings -> Region -> Country or region -> UK, Regional format -> Recommended.
+
+Install all device drivers, restarting as required.
+
+Chipset, wifi, bluetooth, integrated graphics, dedicated graphics, sound.
+
+If an error about PieExtension comes up when installing wifi, drop .exe into Extensions folder.
+
+In admin terminal run `irm "https://christitus.com/win" | iex`, then `Tweaks -> Standard -> Run Tweaks`, then `Run oosu10`
+
+drivers
+get msvcredist, dxwebinstall
 TODO: CTT install video summary
 
 ## Dev env
@@ -23,6 +42,7 @@ TODO: CTT install video summary
 
 - `@tag:telemetry` set to off
 - `Enables commit signing with GPG`
+- disable restoring of prev open projects
 
 ### wsl/git
 
@@ -50,7 +70,6 @@ pinentry-program "/mnt/c/Program Files (x86)/GnuPG/bin/pinentry-basic.exe"
   - `ssh-keygen -t ed25519 -C "dov@example.com"`
 - export public key to github with:
   - `cat ~/.ssh/id_ed25519.pub`
-
 - generate gpg key pair:
   - `gpg --full-generate-key`
 - export for github with:
