@@ -13,6 +13,8 @@ some notes on how I do it these days...
 
 ## win installation
 
+Run `irm "https://christitus.com/win" | iex`, then `Tweaks -> Standard -> Run Tweaks`, then `Run oosu10`
+
 TODO: CTT install video summary
 
 ## Dev env
