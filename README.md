@@ -30,11 +30,15 @@ Chipset, wifi, bluetooth, integrated graphics, dedicated graphics, sound.
 
 If an error about PieExtension comes up when installing wifi, drop .exe into Extensions folder.
 
-In admin terminal run `irm "https://christitus.com/win" | iex`, then `Tweaks -> Standard -> Run Tweaks`, then `Run oosu10`
+Turn on internet and in admin terminal run `irm "https://christitus.com/win" | iex`, then `Tweaks -> Standard -> Run Tweaks`, then `Run oosu10`
+
+leave for 20 min or so for updates
 
 drivers
 get msvcredist, dxwebinstall
 TODO: CTT install video summary
+
+## control panel settings
 
 ## Dev env
 
