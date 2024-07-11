@@ -24,6 +24,8 @@ Once we get to OOBEREGION error, skip that, chose I don't have internet -> Conti
 
 Settings -> Region -> Country or region -> UK, Regional format -> UK.
 
+Time zone -> London
+
 Install all device drivers, restarting as required.
 
 Chipset, wifi, bluetooth, integrated graphics, dedicated graphics, sound.
