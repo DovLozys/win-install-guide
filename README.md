@@ -22,7 +22,7 @@ Once we get to OOBEREGION error, skip that, chose I don't have internet -> Conti
 
 ## win setup
 
-Settings -> Region -> Country or region -> UK, Regional format -> Recommended.
+Settings -> Region -> Country or region -> UK, Regional format -> UK.
 
 Install all device drivers, restarting as required.
 
@@ -30,12 +30,11 @@ Chipset, wifi, bluetooth, integrated graphics, dedicated graphics, sound.
 
 If an error about PieExtension comes up when installing wifi, drop .exe into Extensions folder.
 
-Turn on internet and in admin terminal run `irm "https://christitus.com/win" | iex`, then `Tweaks -> Standard -> Run Tweaks`, then `Run oosu10`
+Turn on internet and in admin terminal run `irm "https://christitus.com/win" | iex`, then `Tweaks -> Standard -> Run Tweaks`, then `Run oosu10`.
 
-leave for 20 min or so for updates
+Run app store updates and windows updates, until no more updates found.
 
-drivers
-get msvcredist, dxwebinstall
+Download and install msvcredist, dxwebinstall
 TODO: CTT install video summary
 
 ## control panel settings
