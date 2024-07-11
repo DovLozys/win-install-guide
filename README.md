@@ -2,7 +2,7 @@
 
 some notes on how I do it these days...
 
-## Bootable USB
+## Bootable USB Creation
 
 - Download windows .iso from <https://www.microsoft.com/software-download/windows11>
 
@@ -12,7 +12,7 @@ some notes on how I do it these days...
 - rufus win experience settings:
   ![Rufus settings](https://github.com/DovLozys/win-install-guide/assets/755086/7b13c307-7127-4329-b55b-aae4448c97f9)
 
-## win install
+## Windows 11 Installation
 
 After booting into the USB, change Time and currency format to `English (World)` (disables app store, doesn't install other useless apps).
 
@@ -20,11 +20,17 @@ Accept license terms, select Custom: Install Windows only, delete all partitions
 
 Once we get to OOBEREGION error, skip that, chose I don't have internet -> Continue with limited setup and installation is done.
 
-## win setup
+## Windows 11 Setup
 
-Settings -> Region -> Country or region -> UK, Regional format -> UK.
+### Settings
+
+Region -> Country or region -> UK, Regional format -> UK.
 
 Time zone -> London
+
+System -> About -> Rename this PC
+
+### Drivers
 
 Install all device drivers, restarting as required.
 
@@ -36,10 +42,13 @@ Turn on internet and in admin terminal run `irm "https://christitus.com/win" | i
 
 Run app store updates and windows updates, until no more updates found.
 
+### Control Panel Settings
+
+### Software
+
 Download and install msvcredist, dxwebinstall
 TODO: CTT install video summary
 
-## control panel settings
 
 ## Dev env
 
