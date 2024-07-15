@@ -14,9 +14,11 @@ some notes on how I do it these days...
 
 ## Windows 11 Installation
 
-After booting into the USB, change Time and currency format to `English (World)` (disables app store, doesn't install other useless apps).
+After booting into the USB, change Time and currency format to `English (World)` (disables app store, doesn't install other unused apps).
 
-Accept license terms, select Custom: Install Windows only, delete all partitions and install to Unallocated Space.
+Select Windows edition -> Custom: Install Windows only -> delete all partitions and install to Unallocated Space.
+
+Once file copying is done, restart into bios to check boot order priority is with the fresh Windows drive first.
 
 Once we get to OOBEREGION error, skip that, chose I don't have internet -> Continue with limited setup and installation is done.
 
@@ -48,7 +50,6 @@ Run app store updates and windows updates, until no more updates found.
 
 Download and install msvcredist, dxwebinstall
 TODO: CTT install video summary
-
 
 ## Dev env
 
