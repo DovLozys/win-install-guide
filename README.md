@@ -67,6 +67,7 @@ TODO: CTT install video summary
 ```bash
 git config --global user.email "dov@example.com"
 git config --global user.name "Dov"
+git config --global commit.gpgsign true
 git config --global gpg.format ssh
 git config --global user.signingkey /PATH/TO/.SSH/KEY.PUB
 ```
