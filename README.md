@@ -53,37 +53,26 @@ TODO: CTT install video summary
 
 ## Dev env
 
-### VSCode
-
-- `@tag:telemetry` set to off
-- `Enables commit signing with GPG`
-- disable restoring of prev open projects
-
 ### wsl/git
 
 - `wsl --install`
+
+- generate ssh key:
+  - `ssh-keygen -t ed25519 -C "dov@example.com"`
+- export public key to auth/sign commits in github with:
+  - `cat /PATH/TO/.SSH/KEY.PUB`
+
 - .gitconfig:
 
 ```bash
 git config --global user.email "dov@example.com"
 git config --global user.name "Dov"
-git config --global user.signingkey 00EF4D3F22885E4B
-git config --global commit.gpgsign true
-git config --global tag.gpgsign true
+git config --global gpg.format ssh
+git config --global user.signingkey /PATH/TO/.SSH/KEY.PUB
 ```
 
-- in wsl edit `~/.gnupg/gpg-agent.conf` with:
+### VSCode
 
-```text
-default-cache-ttl 34560000
-max-cache-ttl 34560000
-```
-
-- generate ssh key:
-  - `ssh-keygen -t ed25519 -C "dov@example.com"`
-- export public key to github with:
-  - `cat ~/.ssh/id_ed25519.pub`
-- generate gpg key pair:
-  - `gpg --full-generate-key`
-- export for github with:
-  - gpg --armor --export 00EF4D3F22885E4B
+- `@tag:telemetry` set to off
+- `Enables commit signing with GPG`
+- disable restoring of prev open projects
