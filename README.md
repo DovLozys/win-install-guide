@@ -72,13 +72,11 @@ git config --global commit.gpgsign true
 git config --global tag.gpgsign true
 ```
 
-- install <https://www.gpg4win.org>
 - in wsl edit `~/.gnupg/gpg-agent.conf` with:
 
 ```text
 default-cache-ttl 34560000
 max-cache-ttl 34560000
-pinentry-program "/mnt/c/Program Files (x86)/GnuPG/bin/pinentry-basic.exe"
 ```
 
 - generate ssh key:
