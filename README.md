@@ -74,6 +74,10 @@ git config --global user.signingkey /PATH/TO/.SSH/KEY.PUB
 
 ### VSCode
 
-- `@tag:telemetry` set to off
-- `Enables commit signing with GPG`
-- disable restoring of prev open projects
+settings.json:
+```json
+"telemetry.telemetryLevel": "off",
+"window.restoreWindows": "none"
+```
+
+- Install <https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack>
