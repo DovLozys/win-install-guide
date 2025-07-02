@@ -1,83 +1,165 @@
-# win-install-guide
+# Windows 11 Installation Guide
 
-some notes on how I do it these days...
+A comprehensive guide for clean Windows 11 installation and development environment setup.
+
+## Table of Contents
+
+1. [Bootable USB Creation](#bootable-usb-creation)
+2. [Windows 11 Installation](#windows-11-installation)
+3. [Windows 11 Setup](#windows-11-setup)
+4. [Development Environment](#development-environment)
+
+---
 
 ## Bootable USB Creation
 
-- Download windows .iso from <https://www.microsoft.com/software-download/windows11>
+### Download Windows 11 ISO
 
-  - Product Language: en-us
-  - verify .iso with `Get-FileHash` in PowerShell
+1. Download Windows 11 ISO from [Microsoft's official site](https://www.microsoft.com/software-download/windows11)
+   - **Product Language**: `en-us`
+   - **Verify ISO integrity** using PowerShell:
+     ```powershell
+     Get-FileHash path\to\windows11.iso
+     ```
 
-- rufus win experience settings:
-  ![Rufus settings](https://github.com/DovLozys/win-install-guide/assets/755086/7b13c307-7127-4329-b55b-aae4448c97f9)
+### Rufus Configuration
+
+Use the following Rufus settings for optimal Windows experience:
+
+![Rufus settings](https://github.com/DovLozys/win-install-guide/assets/755086/7b13c307-7127-4329-b55b-aae4448c97f9)
+
+**Key Settings:**
+- Partition scheme: GPT
+- Target system: UEFI (non CSM)
+- File system: FAT32
+- Remove Windows 11 hardware requirements
+- Disable data collection (Windows 11)
+- Create local account with same name as this user's
+
+---
 
 ## Windows 11 Installation
 
-After booting into the USB, change Time and currency format to `English (World)` (disables app store, doesn't install other unused apps).
+### Initial Setup
 
-Select Windows edition -> Custom: Install Windows only -> delete all partitions and install to Unallocated Space.
+1. **Boot from USB** and change **Time and currency format** to `English (World)`
+   - This disables the Microsoft Store and prevents installation of unnecessary apps
 
-Once file copying is done, restart into bios to check boot order priority is with the fresh Windows drive first.
+2. **Select Installation Type**
+   - Choose **Windows edition** → **Custom: Install Windows only**
+   - Delete all existing partitions
+   - Install to **Unallocated Space**
 
-Once we get to OOBEREGION error, skip that, chose I don't have internet -> Continue with limited setup and installation is done.
+3. **Post-Installation Boot Configuration**
+   - After file copying completes, restart into BIOS
+   - Verify boot order priority has the fresh Windows drive first
+
+### OOBE (Out-of-Box Experience)
+
+1. When encountering **OOBEREGION error**, skip it
+2. Select **"I don't have internet"**
+3. Choose **"Continue with limited setup"**
+4. Complete installation
+
+---
 
 ## Windows 11 Setup
 
-### Settings
+### Initial System Configuration
 
-Region -> Country or region -> UK, Regional format -> UK.
+#### Regional Settings
+- **Region** → **Country or region** → `United Kingdom`
+- **Regional format** → `United Kingdom`
+- **Time zone** → `London`
 
-Time zone -> London
+#### System Settings
+- **System** → **About** → **Rename this PC**
 
-System -> About -> Rename this PC
+### Driver Installation
 
-### Drivers
+Install device drivers in the following order (restart as required):
 
-Install all device drivers, restarting as required.
+1. **Chipset drivers**
+2. **WiFi drivers**
+3. **Bluetooth drivers**
+4. **Integrated graphics drivers**
+5. **Dedicated graphics drivers**
+6. **Audio drivers**
 
-Chipset, wifi, bluetooth, integrated graphics, dedicated graphics, sound.
+> **Note**: If you encounter a PieExtension error during WiFi driver installation, copy the `.exe` file to the Extensions folder.
 
-If an error about PieExtension comes up when installing wifi, drop .exe into Extensions folder.
+### System Optimization
 
-Turn on internet and in admin terminal run `irm "https://christitus.com/win" | iex`, then `Tweaks -> Standard -> Run Tweaks`, then `Run oosu10`.
+1. **Enable internet connection**
 
-Run app store updates and windows updates, until no more updates found.
+2. **Run Chris Titus Tech Windows Utility**
+   ```powershell
+   # Run in Admin PowerShell
+   irm "https://christitus.com/win" | iex
+   ```
+   - Navigate to **Tweaks** → **Standard** → **Run Tweaks**
+   - Run **OOSU10** for additional privacy settings
 
-### Control Panel Settings
+3. **Update System**
+   - Run Microsoft Store updates
+   - Install all Windows Updates
+   - Repeat until no more updates are available
 
-### Software
+### Essential Software
 
-Download and install msvcredist, dxwebinstall
-TODO: CTT install video summary
+Download and install the following:
+- **Microsoft Visual C++ Redistributable** (msvcredist)
+- **DirectX Web Installer** (dxwebinstall)
 
-## Dev env
+---
 
-### wsl/git
+## Development Environment
 
-- `wsl --install`
+### WSL (Windows Subsystem for Linux)
 
-- generate ssh key:
-  - `ssh-keygen -t ed25519 -C "dov@example.com"`
-- export public key to auth/sign commits in github with:
-  - `cat /PATH/TO/.SSH/KEY.PUB`
-
-- .gitconfig:
-
-```bash
-git config --global user.email "dov@example.com"
-git config --global user.name "Dov"
-git config --global commit.gpgsign true
-git config --global gpg.format ssh
-git config --global user.signingkey /PATH/TO/.SSH/KEY.PUB
+#### Installation
+```powershell
+wsl --install
 ```
 
-### VSCode
+#### Git Configuration
 
-settings.json:
+1. **Generate SSH Key**
+   ```bash
+   ssh-keygen -t ed25519 -C "your-email@example.com"
+   ```
+
+2. **Export Public Key** (for GitHub authentication)
+   ```bash
+   cat ~/.ssh/id_ed25519.pub
+   ```
+
+3. **Configure Git**
+   ```bash
+   git config --global user.email "your-email@example.com"
+   git config --global user.name "Your Name"
+   git config --global commit.gpgsign true
+   git config --global gpg.format ssh
+   git config --global user.signingkey ~/.ssh/id_ed25519.pub
+   ```
+
+### Visual Studio Code
+
+#### Essential Settings
+
+Add the following to your `settings.json`:
+
 ```json
-"telemetry.telemetryLevel": "off",
-"window.restoreWindows": "none"
+{
+  "telemetry.telemetryLevel": "off",
+  "window.restoreWindows": "none"
+}
 ```
 
-- Install <https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack>
+#### Required Extensions
+
+- [Remote Development Extension Pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)
+
+---
+
+*Last updated: Check commit history for latest changes*
